@@ -3,6 +3,11 @@ from cryptography.hazmat.primitives import serialization, hashes
 from cryptography.hazmat.primitives.asymmetric import padding
 from cryptography.hazmat.primitives.asymmetric.padding import PKCS1v15, MGF1
 from cryptography.hazmat.primitives import padding as symmetric_padding
+import os
+import hashlib
+from cryptography.hazmat.backends import default_backend
+from cryptography.hazmat.primitives.asymmetric import ec
+from cryptography.hazmat.primitives import hashes
 
 # Generate RSA key pair
 def generateRSAkeyPair():
@@ -93,3 +98,58 @@ def final():
 # Call the final function
 print('The final code is:')
 final()
+
+
+
+# ---------------------------------------------PART 4 ------------------------------------------ #
+
+
+# generating keypairs 
+
+
+
+def ECDSAKeyPair():
+    private_key = ec.generate_private_key(ec.SECP256K1 ,default_backend())
+    public_key = private_key.public_key()
+    return private_key, public_key;
+
+
+# signing message
+
+def ECDSASign(privateKey, message):
+    signature = privateKey.sign(message, ec.ECDSA(hashes.SHA256()))
+    return signature
+    
+    
+
+
+# verification
+
+
+def ECDSAVerify(public_key, message, signature):
+ try:
+        public_key.verify(signature, message, ec.ECDSA(hashes.SHA256()))
+        return True
+ except:
+        return False
+
+
+
+# Main function
+
+
+def FINAL_FN():
+    ECDSAPrivateKey, ECDSAPublicKey = ECDSAKeyPair()
+    message = b"Message for ECDSA algorithm"
+    signature = ECDSASign(ECDSAPrivateKey, message)
+    verified = ECDSAVerify(ECDSAPublicKey, message, signature)
+    
+    # PRINTING
+    DATA=[ECDSAPrivateKey,message ,signature,verified];
+    for i in DATA:
+        print(i)
+
+
+
+print('THE ECDSA IS')
+FINAL_FN();        

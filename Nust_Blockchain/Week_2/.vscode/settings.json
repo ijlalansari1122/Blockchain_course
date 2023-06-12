@@ -5,12 +5,14 @@
         "generatehashes",
         "ijlal",
         "Keypair",
+        "keypairs",
         "lenght",
         "Markle",
         "Merkel",
         "merkle",
         "Nust",
         "poono",
-        "publickey"
+        "publickey",
+        "SECP"
     ]
 }
