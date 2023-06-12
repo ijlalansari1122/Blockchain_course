@@ -5,7 +5,7 @@ import hashlib
 
 
 filename = "Message.txt"
-with open(filename, "w ") as file:
+with open(filename, "w") as file:
  file.write("Hello this is ijlal ansari and iam enrolled in High Impact course");
 
 
