@@ -1,10 +1,8 @@
 from cryptography.hazmat.primitives.asymmetric import rsa, dsa
-from cryptography.hazmat.primitives import serialization, hashes
+from cryptography.hazmat.primitives import  hashes
 from cryptography.hazmat.primitives.asymmetric import padding
-from cryptography.hazmat.primitives.asymmetric.padding import PKCS1v15, MGF1
-from cryptography.hazmat.primitives import padding as symmetric_padding
-import os
-import hashlib
+from cryptography.hazmat.primitives.asymmetric.padding import  MGF1
+
 from cryptography.hazmat.backends import default_backend
 from cryptography.hazmat.primitives.asymmetric import ec
 from cryptography.hazmat.primitives import hashes
@@ -127,6 +125,7 @@ def ECDSASign(privateKey, message):
 
 
 def ECDSAVerify(public_key, message, signature):
+ 
  try:
         public_key.verify(signature, message, ec.ECDSA(hashes.SHA256()))
         return True
