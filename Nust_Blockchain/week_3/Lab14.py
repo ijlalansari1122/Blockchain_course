@@ -13,25 +13,42 @@ def Bitcoin_KEYS():
     
     return private_key, public_key
 
+# hashed 
+
+def Hashed(value):
+    return hashlib.sha256(value).digest();
+
+# added
+def HASHED_concatenate(x ,y):
+    return x+y
+        
+# ripemd
+
+def ripemd(value):
+    return hashlib.new('ripemd160', value).digest()
+    
+
+
+
 # generate Bitcoin address
 
 def generate_bitcoin_address(public_key):
     
-    sha256_hash = hashlib.sha256(public_key).digest()
+    sha256_hash = Hashed(public_key)
     
-    ripemd160_hash = hashlib.new('ripemd160', sha256_hash).digest()
+    ripemd160_hash = ripemd(sha256_hash)
     
     version_byte = b'\x00'
     
-    extended_ripe_hash = version_byte + ripemd160_hash
+    extended_ripe_hash = HASHED_concatenate(ripemd160_hash ,version_byte)
     
-    sha256_hash2 = hashlib.sha256(extended_ripe_hash).digest()
+    sha256_hash2 = Hashed(extended_ripe_hash)
     
-    sha256_hash3 = hashlib.sha256(sha256_hash2).digest()
+    sha256_hash3 = Hashed(sha256_hash2)
     
-    checksum = sha256_hash3[:4]
+    checksum = sha256_hash3[:8]
     
-    extendedripehash = extended_ripe_hash + checksum
+    extendedripehash = HASHED_concatenate(extended_ripe_hash , checksum)
     
     bitcoinaddress = base58.b58encode(extendedripehash).decode()
     
@@ -50,5 +67,5 @@ def MAIN():
     bitcoin_address = generate_bitcoin_address(publicbytes)
     print("Bitcoin Wallet Address is:", bitcoin_address)
 
-print('THE bitcoin wallet generated is ')
+
 MAIN()

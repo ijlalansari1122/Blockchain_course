@@ -62,7 +62,7 @@ def  RandomTransaction():
 
 
 
-# Concatenation    #
+# Concatenation    
 
 
 def concatenateSTR(txid ,inputPrevTxid ,inputPrevOutputIndex ,outputRecipientAddress , outputAmount ,transactionFee):
