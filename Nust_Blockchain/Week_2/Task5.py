@@ -1,23 +1,14 @@
 import hashlib;
 
 
-file_name ='./Lab5.pdf';
-
-
-
-
-
-
+# file_name ='/Lab5.pdf';
+file_name = "/home/poono/Desktop/New Folder/Blockchain_course/Nust_Blockchain/Week_2/Lab5.pdf"
 # def_1
 
 
 def hashed(block):
-    block =hashlib.sha256(block).hexdigest()
-    return hashed
-
-
-
-
+     return hashlib.sha256(block).hexdigest()
+    
 
 # def 2
 
@@ -37,8 +28,8 @@ def  generatehashed():
 # def 3 
     
 def total_HASH(a, b):
-    return  a+b
-    
+    return a + b
+    # return summed
          
 # def 4
 
@@ -59,7 +50,7 @@ def  Merkel_Tree():
            
         data_array.append(hashed(hashed_value));
        else:
-           data_array.append[value[i]];
+           data_array.append(value[i]);
            
            
            value = data_array
@@ -69,5 +60,5 @@ def  Merkel_Tree():
          
 
 
-print('THE MERKLE TREE IS '+ Merkel_Tree())    
+print('THE MERKLE TREE IS ', Merkel_Tree())    
     
